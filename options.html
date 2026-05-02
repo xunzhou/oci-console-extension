@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>OCI Console Enhancer — Settings</title>
+  <style>
+    body { font-family: monospace; font-size: 13px; max-width: 560px; margin: 24px auto; padding: 0 16px; color: #222; }
+    h1 { font-size: 15px; margin: 0 0 20px; }
+    h2 { font-size: 13px; margin: 20px 0 6px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+    .row { margin-bottom: 14px; }
+    label { display: block; margin-bottom: 4px; font-weight: bold; }
+    .hint { color: #666; font-size: 11px; margin-bottom: 6px; }
+    .hint code { background: #f4f4f4; padding: 1px 4px; border-radius: 2px; }
+    textarea { width: 100%; height: 140px; font-size: 11px; box-sizing: border-box; font-family: monospace; }
+    .actions { display: flex; gap: 8px; margin-top: 6px; align-items: center; }
+    button { font-size: 12px; padding: 4px 12px; cursor: pointer; }
+    .status { font-size: 11px; color: #555; }
+    .status.ok { color: #2a8a2a; }
+    .status.err { color: #c00; }
+    .cache-info { font-size: 11px; color: #666; margin-bottom: 6px; }
+    .sep { border: none; border-top: 1px solid #eee; margin: 20px 0; }
+    .toggle-row { display: flex; align-items: center; gap: 8px; }
+    .toggle-row input { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>OCI Console Enhancer — Settings</h1>
+
+  <h2>Compartment cache</h2>
+  <div class="row">
+    <div class="cache-info" id="cache-info">Loading…</div>
+    <label for="comp-input">Paste compartment list</label>
+    <div class="hint">
+      Accepts OCI CLI JSON: <code>oci iam compartment list --all --query 'data[*].{name:name,id:id}'</code><br>
+      or plain <code>name&nbsp;&nbsp;ocid1.compartment.oc1..…</code> pairs (tab/space/comma separated, one per line).
+    </div>
+    <textarea id="comp-input" placeholder='[{"name":"prod","id":"ocid1.compartment.oc1..aaa"},…]&#10;— or —&#10;prod    ocid1.compartment.oc1..aaa&#10;dev     ocid1.compartment.oc1..bbb'></textarea>
+    <div class="actions">
+      <button id="comp-save">Save compartments</button>
+      <button id="comp-clear">Clear cache</button>
+      <span class="status" id="comp-status"></span>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <h2>Developer options</h2>
+  <div class="row">
+    <div class="toggle-row">
+      <input type="checkbox" id="dev-mode">
+      <label for="dev-mode" style="margin:0;font-weight:normal">Dev mode — show tab discovery &amp; compartment cache in popup</label>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

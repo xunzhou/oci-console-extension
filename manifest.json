@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "OCI Console Enhancer",
+  "version": "0.4.0",
+  "description": "Fixes OCI Console annoyances: auto-corrects region in URLs, adds omnibox OCID navigation",
+  "permissions": ["webNavigation", "tabs", "storage", "scripting"],
+  "host_permissions": [
+    "https://cloud.oracle.com/*",
+    "https://cloud.oraclegovcloud.uk/*",
+    "https://cloud.oraclecloud8.com/*",
+    "https://cloud.oraclecloud9.com/*",
+    "https://cloud.oraclecloud10.com/*",
+    "https://cloud.oraclecloud14.com/*",
+    "https://cloud.oraclecloud20.com/*",
+    "https://*.oraclegovcloud.com/*"
+  ],
+  "omnibox": { "keyword": "o" },
+  "commands": {
+    "copy-ocid": {
+      "suggested_key": { "default": "Alt+Shift+C" },
+      "description": "Copy OCID from current OCI tab URL"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [{
+    "matches": [
+      "https://cloud.oracle.com/*",
+      "https://cloud.oraclegovcloud.uk/*",
+      "https://cloud.oraclecloud8.com/*",
+      "https://cloud.oraclecloud9.com/*",
+      "https://cloud.oraclecloud10.com/*",
+      "https://cloud.oraclecloud14.com/*",
+      "https://cloud.oraclecloud20.com/*",
+      "https://*.oraclegovcloud.com/*"
+    ],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "OCI Console Enhancer"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

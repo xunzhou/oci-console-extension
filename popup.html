@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: monospace; font-size: 12px; width: 420px; padding: 10px; margin: 0; }
+    h2 { font-size: 13px; margin: 0 0 8px; }
+    .section { margin-bottom: 10px; }
+    .type-header { font-weight: bold; color: #333; margin: 6px 0 2px; }
+    .tab-row { display: flex; gap: 8px; padding: 1px 0; color: #555; }
+    .tab-row .slug { color: #0066cc; }
+    .empty { color: #999; font-style: italic; }
+    .actions { display: flex; gap: 6px; margin-bottom: 10px; }
+    button { font-size: 11px; padding: 3px 8px; cursor: pointer; }
+    textarea { width: 100%; height: 160px; font-size: 11px; box-sizing: border-box; }
+    .count { color: #888; font-size: 11px; }
+    #dev-sections { display: none; }
+  </style>
+</head>
+<body>
+  <h2>OCI Console Enhancer</h2>
+  <div id="dev-sections">
+  <div class="section" id="comp-section">
+    <div class="type-header">Compartment cache <span class="count" id="comp-count"></span></div>
+    <div id="comp-status" class="empty" style="margin-bottom:4px"></div>
+  </div>
+  <hr style="border:none;border-top:1px solid #eee;margin:8px 0">
+  <div class="type-header" style="margin-bottom:4px">Tab discovery</div>
+  <div class="actions">
+    <button id="scan">Scan current tab</button>
+    <button id="copy-ocid">Copy OCID</button>
+    <button id="export">Copy JSON</button>
+    <button id="clear">Clear all</button>
+  </div>
+  <div id="discovered"></div>
+  <div id="export-area" style="display:none">
+    <textarea id="json-out" readonly></textarea>
+  </div>
+  </div><!-- #dev-sections -->
+  <hr style="border:none;border-top:1px solid #eee;margin:8px 0">
+  <div style="text-align:right">
+    <a id="open-settings" href="#" style="font-size:11px;color:#0066cc;text-decoration:none">Settings ›</a>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
