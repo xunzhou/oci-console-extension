@@ -140,7 +140,8 @@ chrome.commands.onCommand.addListener((command) => {
 
 // ─── Omnibox: navigate to OCI resource by OCID ───────────────────────────────
 
-const OCID_FULL_RE = /^ocid1\.([a-z][a-z0-9]*)\.([a-z0-9]+)\.([a-z0-9-]*)\.([a-zA-Z0-9]*)$/;
+// Some types (e.g. vault, key) carry an extra cluster segment in the unique portion: …<region>.<cluster>.<unique>
+const OCID_FULL_RE = /^ocid1\.([a-z][a-z0-9]*)\.([a-z0-9]+)\.([a-z0-9-]*)\.([a-zA-Z0-9.]+)$/;
 
 function parseOcid(raw) {
   const m = raw.trim().match(OCID_FULL_RE);
@@ -193,6 +194,7 @@ const DIRECT_PATHS = {
   compartment:         '/identity/compartments',
   policy:              ['/identity/domains/policies', 'policies'],
   domain:              '/identity/domains',
+  vault:               '/security/kms',
 };
 
 // Per-type tab slugs; first entry is the default (Enter with no suggestion selected).
